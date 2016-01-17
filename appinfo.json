@@ -9,7 +9,7 @@
     "resources": {
         "media": [
             {
-                "file": "images/heroku.png",
+                "file": "images/menu_icon.png",
                 "menuIcon": true,
                 "name": "IMAGE_MENU_ICON",
                 "type": "bitmap"
@@ -39,7 +39,7 @@
     ],
     "uuid": "2e57d645-5577-48ab-adc4-aae5cbf62176",
     "versionCode": 1,
-    "versionLabel": "1.1",
+    "versionLabel": "1.2",
     "watchapp": {
         "hiddenApp": false,
         "watchface": false

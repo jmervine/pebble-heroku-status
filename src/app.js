@@ -18,10 +18,10 @@ function displayMain() {
   var body = '';
   Object.keys(status).forEach(function(key) {
     var label = envMapper[key];
-      
-    body = body + '\n' + (!label ? key : label) + ': ' + status[key];  
+
+    body = body + '\n' + (!label ? key : label) + ': ' + status[key];
   });
-    
+
   main.body(body);
 }
 
@@ -35,15 +35,15 @@ function loadData(callback, errorback) {
     function(data) {
       // Success!
       console.log('Successfully fetched Heroku current-status payload!');
-      
-      status = data.status;  
+
+      status = data.status;
       issues = data.issues; // default issues to an issues included with current-status
       callback();
-      
+
       // load more issues in the background
       var date = new Date();
       date.setDate(date.getDate() - 1);
-      
+
       var issuesURL = URL + 'issues?since='+date.toISOString()+'&limit=25';
       ajax({
         url: issuesURL,
@@ -63,9 +63,9 @@ function loadData(callback, errorback) {
     function(error) {
       // Failure!
       var message = 'Failed fetching Heroku current-status payload: ' + error;
-      
+
       if (errorback !== undefined) errorback(message);
-      
+
       console.log('ERROR:', currentStatusURL);
       console.log(message);
     }
@@ -81,10 +81,10 @@ var issueNumber = -1;
 function displayIssue(inc) {
   issueNumber = issueNumber + inc;
   console.log('Requesting issue number:', issueNumber);
-  
+
   var issue = issues[issueNumber];
   console.log('Issue details:', JSON.stringify(issue));
-  
+
   if (issue === undefined) {
     issueNumber = -1;
     displayMain();
@@ -103,6 +103,7 @@ main.on('click', 'down', function() {
 });
 
 main.on('click', 'select', function(e) {
+  main.body("Reloading...");
   loadData(displayMain, function(message) {
     main.body(message);
   });
