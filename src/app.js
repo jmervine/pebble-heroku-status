@@ -4,7 +4,7 @@ var ajax = require('ajax');
 
 var main = new UI.Card({
   title: 'Heroku Status',
-  body: 'Fetching...',
+  body: 'Laoding...',
   titleColor: 'purple',
 });
 
@@ -19,7 +19,7 @@ function displayMain() {
   Object.keys(status).forEach(function(key) {
     var label = envMapper[key];
 
-    body = body + '\n' + (!label ? key : label) + ': ' + status[key];
+    body = body + (!label ? key : label) + ': ' + status[key] + '\n';
   });
 
   main.body(body);
@@ -104,7 +104,11 @@ main.on('click', 'down', function() {
 
 main.on('click', 'select', function(e) {
   main.body("Reloading...");
-  loadData(displayMain, function(message) {
-    main.body(message);
-  });
+
+  // ensure that reloading message shows
+  setTimeout(function() {
+      loadData(displayMain, function(message) {
+        main.body(message);
+      });
+  }, 500);
 });
