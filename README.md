@@ -6,4 +6,4 @@ Latest Heroku status information pulled from https://status.heroku.com/.
 
 ### Disclaimer
 
-This was developed external to Heroku and without their concent.
+This was developed external to Heroku and without their consent.
